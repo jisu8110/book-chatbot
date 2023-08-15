@@ -72,7 +72,7 @@ def run_chain(prompt, docs, query: str):
 ############################################
 
 def main() :
-
+    st.set_page_config(page_title = "book-chatbot")
     st.title("책 추천 챗봇")
 
     query = st.text_input("질문을 입력하세요: ") 
