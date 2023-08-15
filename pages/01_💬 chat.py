@@ -15,7 +15,7 @@ os.environ["OPENAI_API_KEY"] = "YOUR API KEY"
 SEARCH_NUM = 4
 
 # csv load
-loader = CSVLoader('./chatbot_prompts_v6.csv', encoding="utf-8")
+loader = CSVLoader('./data/chatbot_prompts_v6.csv', encoding="utf-8")
 data = loader.load()
 
 # text split
