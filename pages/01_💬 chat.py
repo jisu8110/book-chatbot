@@ -8,9 +8,10 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain import PromptTemplate
 from langchain.llms import OpenAI
 from langchain.chains import LLMChain
+from streamlit_chat import message
 
 import os
-os.environ["OPENAI_API_KEY"] = "YOUR API KEY"
+os.environ["OPENAI_API_KEY"] = "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"
 
 SEARCH_NUM = 4
 
@@ -71,23 +72,52 @@ def run_chain(prompt, docs, query: str):
 
 ############################################
 
-def main() :
-    st.set_page_config(page_title = "book-chatbot")
-    st.title("책 추천 챗봇")
+if 'generated' not in st.session_state:
+    st.session_state['generated'] = []
+ 
+if 'past' not in st.session_state:
+    st.session_state['past'] = []
 
-    query = st.text_input("질문을 입력하세요: ") 
 
-    if query:
-        docs = db_search(query, SEARCH_NUM)
-        response = run_chain(
-            prompt,
-            docs,
-            query
-        )
+st.set_page_config(page_title = "book-chatbot")
+st.title("책 추천 챗봇")
+
+with st.form('form', clear_on_submit=True):
+    query = st.text_input('You: ', '', key='input')
+    submitted = st.form_submit_button('Send')
+
+if submitted and query:
+    docs = db_search(query, SEARCH_NUM)
+    answer = run_chain(
+        prompt,
+        docs,
+        query
+    )
+
+    st.session_state.past.append(query)
+    st.session_state.generated.append(answer)
+
+if st.session_state['generated']:
+    for i in range(len(st.session_state['generated'])-1, -1, -1):
+        message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
+        message(st.session_state["generated"][i], key=str(i))
+
+
+
+
+
+
+
+
+# query = st.text_input("질문을 입력하세요: ") 
+
+# if query:
+#     docs = db_search(query, SEARCH_NUM)
+#     response = run_chain(
+#         prompt,
+#         docs,
+#         query
+#     )
         
-        st.write("챗봇: ")
-        st.write(response)  
-
-
-if __name__ == "__main__" :
-    main()
+#     st.write("챗봇: ")
+#     st.write(response)  
