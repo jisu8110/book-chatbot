@@ -11,7 +11,7 @@ from langchain.chains import LLMChain
 from streamlit_chat import message
 
 import os
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "YOUR API KEY"
 
 SEARCH_NUM = 4
 
@@ -101,11 +101,6 @@ if st.session_state['generated']:
     for i in range(len(st.session_state['generated'])-1, -1, -1):
         message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
         message(st.session_state["generated"][i], key=str(i))
-
-
-
-
-
 
 
 
