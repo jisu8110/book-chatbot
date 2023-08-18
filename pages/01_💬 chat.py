@@ -102,17 +102,3 @@ if st.session_state['generated']:
         message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
         message(st.session_state["generated"][i], key=str(i))
 
-
-
-# query = st.text_input("질문을 입력하세요: ") 
-
-# if query:
-#     docs = db_search(query, SEARCH_NUM)
-#     response = run_chain(
-#         prompt,
-#         docs,
-#         query
-#     )
-        
-#     st.write("챗봇: ")
-#     st.write(response)  
