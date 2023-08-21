@@ -124,5 +124,5 @@ create_link_card(
 )
 create_link_card(
     "🧙 판타지 장르를 보고 싶어!",
-    "/rank",
+    "/theme",
 )
