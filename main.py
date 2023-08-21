@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit_modal import Modal
+# from streamlit_modal import Modal
 import base64
 
 def get_base64(bin_file):
@@ -87,11 +87,11 @@ def create_link_card(title, url):
         unsafe_allow_html=True,
     )
 
-def create_modal_card(theme, title, desc):
-    open_modal = st.button(label=theme+title)
-    if open_modal:
-        with Modal(key='key', title=title).container():
-            st.markdown(desc)
+# def create_modal_card(theme, title, desc):
+#     open_modal = st.button(label=theme+title)
+#     if open_modal:
+#         with Modal(key='key', title=title).container():
+#             st.markdown(desc)
 
 
 # 책 추천
@@ -100,17 +100,17 @@ with link2_container:
     col3, col4 = st.columns(2)
     with col3:
         st.image("./images/book1.png")
-        create_modal_card(
-            "🐳 인기 1순위 : ",
-            "1%를 읽는 힘",
-            "국내 최고의 자본시장 분석가이자, 경제·주식 분야 파워 인플루언서로 타의 추종을 불허하는 독보적인 시각을 제시하는 메르의 모든 투자 노하우를 담은 책이다."
+        create_link_card(
+            "🐳 인기 1순위 : 1%를 읽는 힘",
+            None,
+            # "국내 최고의 자본시장 분석가이자, 경제·주식 분야 파워 인플루언서로 타의 추종을 불허하는 독보적인 시각을 제시하는 메르의 모든 투자 노하우를 담은 책이다."
         )
     with col4:
         st.image("./images/book2.png")
-        create_modal_card(
-            "🦄 신작 : ",
-            "메리골드 마음 세탁소",
-            "『메리골드 마음 세탁소』는 한밤중 언덕 위에 생겨난, 조금 수상하고도 신비로운 세탁소에서 벌어지는 일들을 그린 힐링 판타지 소설이다."
+        create_link_card(
+            "🦄 신작 : 메리골드 마음 세탁소",
+            None,
+            # "『메리골드 마음 세탁소』는 한밤중 언덕 위에 생겨난, 조금 수상하고도 신비로운 세탁소에서 벌어지는 일들을 그린 힐링 판타지 소설이다."
         )
 
 # 페이지 이동
