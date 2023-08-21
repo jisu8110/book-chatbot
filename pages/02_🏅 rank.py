@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import base64
 
-from langchain.document_loaders.csv_loader import CSVLoader
+# from langchain.document_loaders.csv_loader import CSVLoader
 
 def get_base64(bin_file):
     with open(bin_file, 'rb') as f:
