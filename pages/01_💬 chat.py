@@ -10,6 +10,7 @@ from langchain.llms import OpenAI
 from langchain.chains import LLMChain
 from streamlit_chat import message
 import base64
+import os
 
 def get_base64(bin_file):
     with open(bin_file, 'rb') as f:
@@ -33,22 +34,28 @@ def set_background(png_file):
 
 set_background('./images/background_chat.png')
 
-import os
-os.environ["OPENAI_API_KEY"] = "YOUR API KEY"
 
-SEARCH_NUM = 4
+with st.sidebar:
+    openai_api_key = st.text_input(label='#### Your OpenAI API Key', placeholder="OpenAI api key를 입력하세요.", type="password")
+    load_data = st.button('Enter')
 
-# csv load
-loader = CSVLoader('./data/chatbot_prompts_v6.csv', encoding="utf-8")
-data = loader.load()
+    if load_data:
+        os.environ["OPENAI_API_KEY"] = openai_api_key
 
-# text split
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=500,chunk_overlap=0)
-data_split = text_splitter.split_documents(data)
+        SEARCH_NUM = 4
 
-# embedding
-embeddings = OpenAIEmbeddings(model_name="text-embedding-ada-002")
-db = FAISS.from_documents(data_split, embeddings)
+        # csv load
+        loader = CSVLoader('./data/chatbot_prompts_v6.csv', encoding="utf-8")
+        data = loader.load()
+
+        # text split
+        text_splitter = RecursiveCharacterTextSplitter(chunk_size=500,chunk_overlap=0)
+        data_split = text_splitter.split_documents(data)
+
+        # embedding
+        embeddings = OpenAIEmbeddings(model_name="text-embedding-ada-002")
+        db = FAISS.from_documents(data_split, embeddings)
+
 
 # prompt template
 template = '''
@@ -101,8 +108,6 @@ if 'generated' not in st.session_state:
 if 'past' not in st.session_state:
     st.session_state['past'] = []
 
-
-st.set_page_config(page_title = "book-chatbot")
 st.title("책 추천 챗봇")
 
 with st.form('form', clear_on_submit=True):
