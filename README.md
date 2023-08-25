@@ -2,5 +2,7 @@
 
 ## 🙋‍♀️ Contributors
 [jisu8110](https://github.com/jisu8110) 
+
 [hhs8746](https://github.com/hhs8746)
+
 [bchoi2021](https://github.com/bchoi2021)
