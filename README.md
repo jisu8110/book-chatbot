@@ -1,4 +1,4 @@
-## 🍊 비타민 동아리 팀 프로젝트 - Book-Chat
+## 🍊 빅데이터 기반 도서 추천 챗봇 플랫폼 ‘LEB’ 
 
 ## 🙋‍♀️ Contributors
 [jisu8110](https://github.com/jisu8110) 
