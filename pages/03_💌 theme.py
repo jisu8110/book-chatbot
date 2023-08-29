@@ -35,9 +35,27 @@ book_tab3 = book_df[book_df["KDC_NM"] == "양극지리"]
 book_tab4 = book_df[book_df["KDC_NM"] == "경영관리"]
 
 
-st.title("🔍 Theme")
+st.title("💌 Theme")
 
-tab1, tab2, tab3, tab4 = st.tabs(["⚖ 물리학", "📓 소설", "🌏 양극지리", "💰 경영관리"])
+
+col1, col2 = st.columns([4,1])
+
+with col1:
+    search_query = st.text_input(label='', placeholder="검색어를 입력해주세요.")
+
+with col2:
+    st.write("")
+    st.write("")
+    if st.button('🔍'):
+        pass 
+
+
+st.write("")
+st.write("")
+
+
+
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["⚖ 물리학", "📓 소설", "🌏 양극지리", "💰 경영관리", "🚀 자기계발", "💞 로맨스"])
 
 with tab1:
     st.write(book_tab1)

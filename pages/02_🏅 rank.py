@@ -36,14 +36,30 @@ book_df = pd.read_csv('./data/book.csv', encoding="utf-8")
 sorted_book1 = book_df.sort_values('PBLICTE_YEAR', ascending=False)
 
 # sort 도서명 순
-sorted_book2 = book_df.sort_values('TITLE_NM', ascending=False)
+# sorted_book2 = book_df.sort_values('TITLE_NM', ascending=False)
 
-tab1, tab2= st.tabs(["최신 도서 순", "도서명 순"])
+
+col1, col2 = st.columns([4,1])
+
+with col1:
+    search_query = st.text_input(label='', placeholder="검색어를 입력해주세요.")
+
+with col2:
+    st.write("")
+    st.write("")
+    if st.button('🔍'):
+        pass 
+
+
+st.write("")
+st.write("")
+
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["🆕 최신 도서 순", "👍 대출 인기 순", "🔍 검색 인기 순", "💕 베스트셀러", "🥰 스테디셀러"])
 
 with tab1:
     st.write(sorted_book1[['TITLE_NM', 'AUTHR_NM', 'PBLICTE_YEAR', 'KDC_NM']])
 
-with tab2:
-    st.write(sorted_book2[['TITLE_NM', 'AUTHR_NM', 'PBLICTE_YEAR', 'KDC_NM']])
+# with tab2:
+#     st.write(sorted_book2[['TITLE_NM', 'AUTHR_NM', 'PBLICTE_YEAR', 'KDC_NM']])
 
 
